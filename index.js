@@ -44,9 +44,8 @@ for (const file of commandFiles) {
 }
 
 async function deployAllAllowedGuilds() {
-  const jsonGuilds = getAllGuildIds();
   const envGuild = process.env.DISCORD_OWNER_GUILD;
-  const uniqueGuilds = new Set([...jsonGuilds, envGuild]);
+  const uniqueGuilds = new Set([envGuild]);
   console.log(`🚀 กำลัง deploy คำสั่งให้ทั้งหมด ${uniqueGuilds.size} เซิร์ฟเวอร์...`);
   for (const guildId of uniqueGuilds) {
     if (!guildId) continue;
@@ -54,11 +53,6 @@ async function deployAllAllowedGuilds() {
       await deployToGuild(guildId);
     } catch (err) {
       console.error(`❌ Deploy ล้มเหลวสำหรับ guild ${guildId}:`, err);
-      appendDeployLog({
-        guildId,
-        source: store.isAllowedGuild(guildId) ? 'json' : 'env',
-        success: true,
-      });
     }
   }
 }
@@ -150,7 +144,6 @@ client.on(Events.InteractionCreate, async interaction => {
 function isAllowedToUseCommand(guildId, allowedGuilds = []) {
   if (allowedGuilds.includes(guildId)) return true;
   if (allowedGuilds.includes('env') && guildId === process.env.DISCORD_OWNER_GUILD) return true;
-  if (allowedGuilds.includes('json') && store.isAllowedGuild(guildId)) return true;
   return false;
 }
 
