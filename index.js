@@ -58,7 +58,7 @@ async function deployAllAllowedGuilds() {
 }
 
 client.once(Events.ClientReady, async () => {
-  console.log(`✅ บอทพร้อมใช้งานในชื่อ ${client.user.tag}`);
+  console.log(`บอทพร้อมใช้งานในชื่อ ${client.user.tag}`);
   await cleanCommands(client).then(() => deployAllAllowedGuilds());
 });
 
@@ -125,16 +125,16 @@ client.on(Events.InteractionCreate, async interaction => {
       await botton.executeButton(interaction);
     }
   } catch (error) {
-    console.error('❌ เกิดข้อผิดพลาดในการตอบโต้:', error);
+    console.error('เกิดข้อผิดพลาดในการตอบโต้:', error);
 
     if (!interaction.replied && !interaction.deferred) {
       try {
         await interaction.reply({
-          content: '⚠️ เกิดข้อผิดพลาดในการดำเนินการ กรุณาลองใหม่อีกครั้ง',
+          content: 'เกิดข้อผิดพลาดในการดำเนินการ กรุณาลองใหม่อีกครั้ง',
           ephemeral: true
         });
       } catch (e) {
-        console.error('❌ ส่งข้อความตอบกลับไม่สำเร็จ:', e);
+        console.error('ส่งข้อความตอบกลับไม่สำเร็จ:', e);
       }
     }
   }
