@@ -142,6 +142,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
 
 function isAllowedToUseCommand(guildId, allowedGuilds = []) {
+  if (allowedGuilds.includes('*')) return true; // allow all guilds
   if (allowedGuilds.includes(guildId)) return true;
   if (allowedGuilds.includes('env') && guildId === process.env.DISCORD_OWNER_GUILD) return true;
   return false;
