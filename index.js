@@ -46,13 +46,13 @@ for (const file of commandFiles) {
 async function deployAllAllowedGuilds() {
   const envGuild = process.env.DISCORD_OWNER_GUILD;
   const uniqueGuilds = new Set([envGuild]);
-  console.log(`🚀 กำลัง deploy คำสั่งให้ทั้งหมด ${uniqueGuilds.size} เซิร์ฟเวอร์...`);
+  console.log(`กำลัง deploy คำสั่งให้ทั้งหมด ${uniqueGuilds.size} เซิร์ฟเวอร์...`);
   for (const guildId of uniqueGuilds) {
     if (!guildId) continue;
     try {
       await deployToGuild(guildId);
     } catch (err) {
-      console.error(`❌ Deploy ล้มเหลวสำหรับ guild ${guildId}:`, err);
+      console.error(`Deploy ล้มเหลวสำหรับ guild ${guildId}:`, err);
     }
   }
 }

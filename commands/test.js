@@ -95,7 +95,7 @@ module.exports = {
       switch (action) {
         case 'modalID': {
           const modal = new ModalBuilder()
-            .setCustomId(RegisID('test', 'modal', ['modalID'])) // ✅ ใช้ 'modal' เพื่อ route ไป executeModal
+            .setCustomId(RegisID('test', 'modal', ['modalID'])) // ใช้ 'modal' เพื่อ route ไป executeModal
             .setTitle('Testing Modal');
 
           const input = new TextInputBuilder()
@@ -126,8 +126,8 @@ module.exports = {
     const data = parseCustomData(interaction.customId); // ex: ['modalID']
     const inputVal = interaction.fields.getTextInputValue('modal_input');
 
-    console.log('🟡 Modal Data:', data);
-    console.log('✏️ Modal Input:', inputVal);
+    console.log('Modal Data:', data);
+    console.log('Modal Input:', inputVal);
 
     return interaction.reply({
       content: `คุณพิมพ์ว่า: \`${inputVal}\``,
