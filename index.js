@@ -8,11 +8,8 @@ const {
   Events
 } = require('discord.js');
 
-const store = require('./lib/pointsStore');
 const { deployToGuild } = require('./lib/deployToGuild');
 const { cleanCommands } = require('./lib/cleanCommands');
-const { appendDeployLog } = require('./lib/logUtils');
-const { getAllGuildIds } = require('./lib/pointsStore');
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -145,15 +142,6 @@ client.on(Events.InteractionCreate, async interaction => {
       } catch (e) {
         console.error('❌ ส่งข้อความตอบกลับไม่สำเร็จ:', e);
       }
-    }
-
-    if (interaction.guildId) {
-      appendDeployLog({
-        guildId: interaction.guildId,
-        source: store.isAllowedGuild(interaction.guildId) ? 'json' : 'env',
-        success: false,
-        error: error.message
-      });
     }
   }
 });
