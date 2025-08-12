@@ -79,7 +79,6 @@ async executeChatInput(interaction) {
 
 - `['*']` = ใช้ได้ทุกกิลด์ที่บอทอยู่
 - `['env']` = เฉพาะกิลด์ใน ENV (DISCORD_OWNER_GUILD)
-- `['json']` = รองรับในอนาคตผ่านไฟล์เก็บ guld ID
 - `[ '123456789012345678' ]` = ใส่ ID ตรง ๆ ได้
 
 ฟังก์ชัน `isAllowedToUseCommand(guildId, allowedGuilds)` ตรวจสอบสิทธิ์ก่อน execute
